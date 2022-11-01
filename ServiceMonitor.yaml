@@ -1,13 +1,15 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  labels:
   name: prom-app
+  namespace: openshift-monitoring
 spec:
   endpoints:
   - scheme: http
     port: http
-  namespaceSelector: {}
+  namespaceSelector:
+    matchNames:
+      - my-namespace
   selector:
     matchLabels:
        app: test-app
